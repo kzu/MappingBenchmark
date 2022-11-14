@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net472;net6.0;net7.0</TargetFrameworks>
-    <RestoreSources>https://api.nuget.org/v3/index.json;https://pkg.kzu.io/index.json</RestoreSources>
     <LangVersion>Preview</LangVersion>
     <OutputType>Exe</OutputType>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
@@ -11,7 +10,7 @@
   
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
-    <PackageReference Include="Merq" Version="42.42.42-main.220" />
+    <PackageReference Include="Devlooped.Dynamically" Version="1.0.0-alpha" />
     <PackageReference Include="MessagePack" Version="2.4.35" />
     <PackageReference Include="PolySharp" Version="1.7.1" />
     <PackageReference Include="System.Text.Json" Version="6.0.0" />

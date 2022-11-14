@@ -115,18 +115,15 @@ public partial record Buffer([property: Key(0)] List<Line> Lines);
 
 static partial class Dynamically
 {
-    public static T Create<T>(dynamic data)
-    {
-        if (data is IDynamicMetaObjectProvider)
-        {
-            global::System.Console.WriteLine("Is provider!");
-        }
+    public static partial T Create<T>(object data);
 
+    public static partial T Create<T>(object data)
+    {
         return typeof(T) switch
         {
-            Type t when t == typeof(Buffer) => (T)Buffer.Create(data),
-            Type t when t == typeof(Line) => (T)Line.Create(data),
-            Type t when t == typeof(Point) => (T)Point.Create(data),
+            Type t when t == typeof(Buffer) => (T)Buffer.Create((dynamic)data),
+            Type t when t == typeof(Line) => (T)Line.Create((dynamic)data),
+            Type t when t == typeof(Point) => (T)Point.Create((dynamic)data),
             _ => throw new NotSupportedException(),
         };
     }
