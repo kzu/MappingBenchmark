@@ -4,7 +4,6 @@ using BenchmarkDotNet.Jobs;
 using MessagePack;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
 using System.Text.Json;
 using Xunit;
@@ -12,9 +11,9 @@ using Xunit;
 namespace DynamicBenchmark;
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net60)]
-[SimpleJob(RuntimeMoniker.Net70)]
-[SimpleJob(RuntimeMoniker.Net472, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net60, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net472)]
 //[RPlotExporter]
 public class DynamicPerformance
 {
