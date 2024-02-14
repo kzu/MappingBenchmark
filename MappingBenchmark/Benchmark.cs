@@ -70,9 +70,9 @@ public class DynamicPerformance
 
     [Fact]
     [Benchmark]
-    public void Dynamic()
+    public void Dynamically()
     {
-        var buffer = Dynamically.Create<Buffer>(data);
+        var buffer = global::Dynamically.Create<Buffer>(data);
         Assert.All(buffer.Lines, line => Assert.Equal(100, line.End.Y));
     }
 
