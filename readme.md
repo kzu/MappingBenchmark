@@ -15,13 +15,13 @@ Tests the following approaches:
 
 ``` ini
 
-BenchmarkDotNet=v0.13.2, OS=Windows 11 (10.0.22622.575)
+BenchmarkDotNet v0.13.12, Windows 11 (10.0.22622.575)
 Intel Core i9-10900T CPU 1.90GHz, 1 CPU, 20 logical and 10 physical cores
-.NET SDK=7.0.100
-  [Host]               : .NET 6.0.11 (6.0.1122.52304), X64 RyuJIT AVX2
-  .NET 6.0             : .NET 6.0.11 (6.0.1122.52304), X64 RyuJIT AVX2
-  .NET 7.0             : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
-  .NET Framework 4.7.2 : .NET Framework 4.8.1 (4.8.9105.0), X64 RyuJIT VectorSize=256
+.NET SDK 9.0.100-preview.2.24074.1
+  [Host]               : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX2
+  .NET 6.0             : .NET 6.0.25 (6.0.2523.51912), X64 RyuJIT AVX2
+  .NET 8.0             : .NET 8.0.1 (8.0.123.58001), X64 RyuJIT AVX2
+  .NET Framework 4.7.2 : .NET Framework 4.8.1 (4.8.9181.0), X64 RyuJIT VectorSize=256
 
 
 ```
