@@ -69,10 +69,10 @@ public class DynamicPerformance
     }
 
     [Fact]
-    [Benchmark]
-    public void Dynamically()
+    [Benchmark(Description = "Devlooped.Dynamically")]
+    public void Dynamic()
     {
-        var buffer = global::Dynamically.Create<Buffer>(data);
+        var buffer = Dynamically.Create<Buffer>(data);
         Assert.All(buffer.Lines, line => Assert.Equal(100, line.End.Y));
     }
 
