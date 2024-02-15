@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Xunit;
 
 namespace DynamicBenchmark;
@@ -101,6 +102,15 @@ public class DynamicPerformance
         var buffer = JsonSerializer.Deserialize<Buffer>(jsonStream);
         Assert.All(buffer!.Lines, line => Assert.Equal(100, line.End.Y));
     }
+
+    [Fact]
+    [Benchmark]
+    public void JsonSourceGenerated()
+    {
+        jsonStream.Position = 0;
+        var buffer = JsonSerializer.Deserialize<Buffer>(jsonStream, new JsonSerializerOptions { TypeInfoResolver = JsonContext.Default });
+        Assert.All(buffer!.Lines, line => Assert.Equal(100, line.End.Y));
+    }
 }
 
 [MessagePackObject]
@@ -112,18 +122,9 @@ public partial record Line([property: Key(0)] Point Start, [property: Key(1)] Po
 [MessagePackObject]
 public partial record Buffer([property: Key(0)] List<Line> Lines);
 
-static partial class Dynamically
+[JsonSerializable(typeof(Buffer))]
+[JsonSerializable(typeof(Line))]
+[JsonSerializable(typeof(Point))]
+partial class JsonContext : JsonSerializerContext
 {
-    public static partial T Create<T>(object data);
-
-    public static partial T Create<T>(object data)
-    {
-        return typeof(T) switch
-        {
-            Type t when t == typeof(Buffer) => (T)Buffer.Create((dynamic)data),
-            Type t when t == typeof(Line) => (T)Line.Create((dynamic)data),
-            Type t when t == typeof(Point) => (T)Point.Create((dynamic)data),
-            _ => throw new NotSupportedException(),
-        };
-    }
 }
